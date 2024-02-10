@@ -1,0 +1,9 @@
+name: LCM
+version: '${version}'
+main: com.gilbertcraft.lcm.LC
+api-version: '1.16'
+commands:
+  hyperion:
+    usage: /hyperion
+    aliases: hype
+    description: LCM come su dungeon
