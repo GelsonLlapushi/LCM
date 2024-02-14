@@ -20,6 +20,10 @@ public final class LC extends JavaPlugin implements Listener {
     public void onEnable() {
         getLogger().info("Plugin Hyperion attivato!");
         getServer().getPluginManager().registerEvents(this, this);
+        ConfigManager configManager = new ConfigManager(this);
+
+        // Carica le impostazioni dalla configurazione
+        configManager.loadConfig();
     }
 
     @Override

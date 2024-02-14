@@ -6,6 +6,4 @@ commands:
   hyperion:
     usage: /hyperion
     aliases: hype
-    permission:
-    permission-message:
     description: LCM come su dungeon
