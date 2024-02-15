@@ -1,4 +1,4 @@
-# Plugin Hyperion
+# Plugin LCM
 
 Il Plugin Hyperion è un plugin Bukkit/Spigot che permette ai giocatori di aggiungere effetti particellari quando premono il tasto sinistro del mouse con una spada denominata "Hyperion".
 
