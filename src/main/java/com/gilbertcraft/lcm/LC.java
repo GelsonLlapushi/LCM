@@ -16,11 +16,13 @@ import java.util.Objects;
 
 public final class LC extends JavaPlugin implements Listener {
 
+    private ConfigManager configManager;
+
     @Override
     public void onEnable() {
         getLogger().info("Plugin Hyperion attivato!");
         getServer().getPluginManager().registerEvents(this, this);
-        ConfigManager configManager = new ConfigManager(this);
+        configManager = new ConfigManager(this);
 
         // Carica le impostazioni dalla configurazione
         configManager.loadConfig();
@@ -52,8 +54,10 @@ public final class LC extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         if (player.getInventory().getItemInMainHand().getType() == Material.IRON_SWORD) {
             if (Objects.requireNonNull(player.getInventory().getItemInMainHand().getItemMeta()).getDisplayName().equals("Hyperion")) {
-                if (event.getAction().name().contains("LEFT_CLICK")) {
-                    player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, player.getLocation().add(0, 1, 0), 50);
+                if (event.getAction().name().contains("RIGHT_CLICK")) {
+                    // Utilizza il tipo di particella dalla configurazione
+                    String particleType = configManager.getParticleType();
+                    player.getWorld().spawnParticle(Particle.valueOf(particleType), player.getLocation().add(0, 1, 0), 50);
                 }
             }
         }

@@ -1,38 +1,27 @@
 package com.gilbertcraft.lcm;// ConfigManager.java
 
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-
-import java.io.File;
-import java.io.IOException;
 
 public class ConfigManager {
 
     private final LC plugin;
-    private File configFile;
-    private FileConfiguration config;
+    private final FileConfiguration config;
 
     public ConfigManager(LC plugin) {
         this.plugin = plugin;
+        this.config = plugin.getConfig();
     }
 
     public void loadConfig() {
-        configFile = new File(plugin.getDataFolder(), "config.yml");
-        if (!configFile.exists()) {
-            plugin.saveResource("config.yml", false);
-        }
-        config = YamlConfiguration.loadConfiguration(configFile);
+        plugin.saveDefaultConfig(); // Salva il file di configurazione predefinito se non esiste
     }
 
-    public FileConfiguration getConfig() {
-        return config;
+    public String getParticleType() {
+        return config.getString("particle-type", "END_ROD");
     }
 
-    public void saveConfig() {
-        try {
-            config.save(configFile);
-        } catch (IOException e) {
-            plugin.getLogger().warning("Impossibile salvare il file di configurazione!");
-        }
+    public void setParticleType(String particleType) {
+        config.set("particle-type", particleType);
+        plugin.saveConfig();
     }
 }
